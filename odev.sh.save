@@ -1,0 +1,54 @@
+#!\bin\sh
+tercih1=$(whiptail --menu "Yapmak istediğiniz işlemi seçiniz" 18 100 10 \
+ "Ekle" "Bulunmuş olduğunuz konuma bir adet .txt dosyası ekleme" \
+ "Bak" "Olduğunuz dizindeki .txt uzantılı dosyaları görme" \
+ "Sil" "Olduğunuz dizinde .txt uzantılı dosyalardan istediğinizi silme" \
+ "İçerik Değiştir" "Seçeceğiniz .txt uzantılı dosyanın içeriğini değiştirme" \
+ "Adını Değiştir" "Seçeceğiniz .txt uzantılı dosyanın adını değiştir" 3>&1 1>&2 2>&3)
+if [ -z "$tercih1" ]
+then
+ echo "Herhangi bir seçim yapılmadı"
+else
+ echo "Yapılan seçim $tercih1"
+fi
+if [ $tercih1 = "Ekle" ]
+then
+ varmi=""
+ dosya_adi=$(whiptail --inputbox "Dosyanın adını giriniz" 10 100 3>&1 1>&2 2>&3)
+ varmi=$(ls | grep -o $dosya_adi)
+ echo $varmi
+ icerik=$(whiptail --inputbox "İçine Yazmak istediğiniz metni giriniz" 50 100 3>&1 1>&2 2>&3)
+ #echo $icerik > $dosya_adi
+ if [ $varmi == $dosya_adi ]
+ then
+  tercih2="Null"
+  tercih2=$(whiptail --menu "Girdiğiniz dosya adlı bir .txt dosyası mevcut. Hangi işlem yapılsın?" 18 100 10 \
+  "Yaz" "Önceki Dosyayının içeriğini sil ve yeniden yaz" \
+  "Ekle" "Önceki dosyanın  yaz" \
+  "İptal" "Yazmış olduğum bu dosyayı iptal et"  3>&1 1>&2 2>&3)
+  if [ $tercih2 ==  "Yaz" ]
+  then
+   echo $icerik > $dosya_adi
+  elif [ $tercih2 == "Ekle" ]
+  then
+   wer=$(cat $dosya_adi)
+   echo $wer
+   wer=$wer" "$icerik
+   echo $icerik
+   echo $wer
+   echo $wer > $dosya_adi
+  fi
+ fi
+elif [ $tercih1 == "Bak" ]
+then
+ varmi="Null"
+ dosya_adi=$(whiptail --inputbox "Dosyanın adını giriniz" 10 100 3>&1 1>&2 2>&3)
+ varmi=$(ls | grep -o $dosya_adi)
+ if [ $varmi != "Null" ]
+ then
+  whiptail --textbox $dosya_adi 10 100 --scrolltext
+ else
+  whiptail --msgbox "Dosya Bulunamadi. Tekrar Deneyiniz." 10 100
+ fi
+fi
+
