@@ -37,3 +37,5 @@ Eğerki "EKLE" seçeneğini seçerseniz ise;
 ![Ekran Görüntüsü - 2023-01-04 14-00-21](https://user-images.githubusercontent.com/75831010/210541078-193443d1-2319-4f18-a3aa-e1562adae191.png)
 ![Ekran Görüntüsü - 2023-01-04 14-00-47](https://user-images.githubusercontent.com/75831010/210541146-ce13d9f8-7c5c-4a5e-9ea7-086ac7996bd7.png)
 ![Ekran Görüntüsü - 2023-01-04 14-01-39](https://user-images.githubusercontent.com/75831010/210541303-ab43fd83-6a0c-43dd-8517-84e981f628f4.png)
+
+Video : https://youtu.be/5i2oEL9qbDw
